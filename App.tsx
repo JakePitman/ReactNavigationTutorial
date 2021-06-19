@@ -51,6 +51,8 @@ const DetailsScreen = ({ navigation }: { navigation: any }) => {
 
 const Stack = createStackNavigator();
 
+const HomeHeader = () => <Text>My cool header</Text>;
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -68,7 +70,7 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={({ route }) => ({
-            title: route.params?.option,
+            headerTitle: (props) => <HomeHeader />,
           })}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
