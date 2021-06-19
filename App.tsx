@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import {
   NavigationContainer,
   StackActionHelpers,
@@ -9,9 +9,22 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const HomeScreen = ({ navigation, route }: { navigation: any; route: any }) => {
   const selectedOption = route.params?.option;
+  const [count, setCount] = React.useState(0);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <Button title="Update count" onPress={() => setCount((c) => c + 1)} />
+        );
+      },
+    });
+  });
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen</Text>
+      <Text>Count: {count}</Text>
       <Text>
         {selectedOption
           ? `You selected ${selectedOption}`
