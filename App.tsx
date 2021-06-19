@@ -23,6 +23,12 @@ const HomeScreen = ({ navigation, route }: { navigation: any; route: any }) => {
       >
         <Text style={styles.buttonText}>Go to Details</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.setOptions({ title: "Home Screen" })}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Reset screen title</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -52,7 +58,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: "Overview" }}
+          options={({ route }) => ({ title: route.params?.option })}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
