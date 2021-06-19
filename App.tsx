@@ -23,6 +23,12 @@ const HomeScreen = ({ navigation, route }: { navigation: any; route: any }) => {
       >
         <Text style={styles.buttonText}>Go to Details</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.setOptions({ title: "Home Screen" })}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Reset screen title</Text>
+      </TouchableOpacity>
     </View>
   );
 };
