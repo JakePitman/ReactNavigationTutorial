@@ -9,9 +9,22 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const HomeScreen = ({ navigation, route }: { navigation: any; route: any }) => {
   const selectedOption = route.params?.option;
+  const [count, setCount] = React.useState(0);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <Button title="Update count" onPress={() => setCount((c) => c + 1)} />
+        );
+      },
+    });
+  });
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Text>Home Screen</Text>
+      <Text>Count: {count}</Text>
       <Text>
         {selectedOption
           ? `You selected ${selectedOption}`
@@ -71,14 +84,6 @@ export default function App() {
           component={HomeScreen}
           options={({ route }) => ({
             headerTitle: (props) => <HomeHeader />,
-            headerRight: () => (
-              <Button
-                title="Info"
-                onPress={() => {
-                  alert("Information!");
-                }}
-              />
-            ),
           })}
         />
         <Stack.Screen name="Details" component={DetailsScreen} />
